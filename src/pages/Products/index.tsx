@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { type product } from '../../types/product';
+import { CartContext } from '../../context/Cart/CartContext';
 
 const Products = () => {
   const [products, setProducts] = useState<Array<product>>([]);
+  const { addToCart } = useContext(CartContext);
 
   const fetchProducts = async () => {
     const response = await fetch('https://fakestoreapi.com/products');
@@ -18,7 +20,7 @@ const Products = () => {
   return (
     <ul>
       {products.map((item) => (
-        <li>
+        <li key={item.id}>
           <figure>
             <img
               src={item.image}
@@ -28,7 +30,13 @@ const Products = () => {
             />
             <figcaption>
               <h5>{item.title}</h5>
-              {item.price}$<button>Add</button>
+              {item.price}$
+              <button
+                onClick={() => {
+                  addToCart(item);
+                }}>
+                Add
+              </button>
             </figcaption>
           </figure>
         </li>
