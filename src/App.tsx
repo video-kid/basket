@@ -1,12 +1,16 @@
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <div className='App'>
-      <nav>
-        <button>cart</button>
-      </nav>
-      <Outlet />
+      <header>
+        <nav>
+          <Link to='cart'>cart</Link>
+        </nav>
+      </header>
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 }
