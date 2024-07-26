@@ -3,15 +3,19 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ErrorPage from './Pages/Error';
-import CartPage from './Pages/Cart';
+import ErrorPage from './pages/Error';
+import CartPage from './pages/Cart';
+import Products from './pages/Products';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     errorElement: <ErrorPage />,
-    children: [{ path: 'cart', element: <CartPage /> }],
+    children: [
+      { path: '/', element: <Products /> },
+      { path: 'cart', element: <CartPage /> },
+    ],
   },
 ]);
 
